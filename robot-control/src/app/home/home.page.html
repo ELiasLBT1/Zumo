@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      ZUMO Robot Control
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Debug element to test rendering -->
+  <div style="background: white; color: black; padding: 20px; margin: 10px; border: 2px solid red; text-align: center;">
+    <h2>ZUMO Robot Control Interface</h2>
+    <p>Status: {{ isConnected ? 'Connected' : 'Disconnected' }}</p>
+  </div>
+
+  <div class="connection-status">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Bluetooth Connection</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label>Status:</ion-label>
+          <ion-badge slot="end" [color]="isConnected ? 'success' : 'danger'">
+            {{ isConnected ? 'Connected' : 'Disconnected' }}
+          </ion-badge>
+        </ion-item>
+        <ion-button expand="block" (click)="connectBluetooth()" [disabled]="isConnected">
+          Connect to ZUMOE2
+        </ion-button>
+        <ion-button expand="block" (click)="disconnectBluetooth()" [disabled]="!isConnected" color="danger">
+          Disconnect
+        </ion-button>
+        <ion-button expand="block" fill="outline" (click)="showDebugInfo()">
+          Debug Info
+        </ion-button>
+        <ion-button expand="block" fill="outline" (click)="recheckBluetooth()" color="secondary">
+          Verificar Bluetooth
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="controls" [class.disabled]="!isConnected">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Robot Controls</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="control-grid">
+          <!-- Top row - Forward button (comando '1') -->
+          <div class="button-row">
+            <ion-button class="direction-button" (click)="sendCommand('1')" [disabled]="!isConnected">
+              <ion-icon name="arrow-up" size="large"></ion-icon>
+              <br><small>Adelante</small>
+            </ion-button>
+          </div>
+          
+          <!-- Middle row - Left, Stop, Right buttons -->
+          <div class="button-row">
+            <!-- Izquierda (comando '3') -->
+            <ion-button class="direction-button" (click)="sendCommand('3')" [disabled]="!isConnected">
+              <ion-icon name="arrow-back" size="large"></ion-icon>
+              <br><small>Izquierda</small>
+            </ion-button>
+            
+            <!-- Stop (comando '5' - cambiado de '0') -->
+            <ion-button class="direction-button" color="danger" (click)="sendCommand('5')" [disabled]="!isConnected">
+              <ion-icon name="stop" size="large"></ion-icon>
+              <br><small>Stop</small>
+            </ion-button>
+            
+            <!-- Derecha (comando '2') -->
+            <ion-button class="direction-button" (click)="sendCommand('2')" [disabled]="!isConnected">
+              <ion-icon name="arrow-forward" size="large"></ion-icon>
+              <br><small>Derecha</small>
+            </ion-button>
+          </div>
+          
+          <!-- Bottom row - Backward button (comando '4') -->
+          <div class="button-row">
+            <ion-button class="direction-button" (click)="sendCommand('4')" [disabled]="!isConnected">
+              <ion-icon name="arrow-down" size="large"></ion-icon>
+              <br><small>Atrás</small>
+            </ion-button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

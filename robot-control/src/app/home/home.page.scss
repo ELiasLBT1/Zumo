@@ -1,0 +1,48 @@
+// Remove the default styles that might be interfering
+ion-content {
+  --background: #f4f5f8;
+  --color: #000;
+}
+
+ion-header {
+  background: var(--ion-color-primary);
+}
+
+.connection-status, .controls {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.control-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.direction-button {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+  --border-radius: 50%;
+}
+
+.disabled {
+  opacity: 0.6;
+}
+
+ion-card {
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+ion-button {
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}

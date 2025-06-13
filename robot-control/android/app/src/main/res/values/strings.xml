@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ZUMO Robot Control</string>
+    <string name="title_activity_main">ZUMO Robot Control</string>
+    <string name="package_name">com.robotcontrol.zumo</string>
+    <string name="custom_url_scheme">com.robotcontrol.zumo</string>
+</resources>
